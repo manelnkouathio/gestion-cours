@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const REST_API_BASE_URL = 'http://localhost:8080/api/matieres';
+const REST_API_BASE_URL = '/api/matieres';
 
 //Connection du GetAll
 export const listMatieres = () => axios.get(REST_API_BASE_URL);
