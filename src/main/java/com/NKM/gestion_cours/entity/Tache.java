@@ -25,15 +25,20 @@ public class Tache {
     @Column(name = "priority")
     public String priority;
 
+    // Identifiant de l'appareil qui a créé cette tâche
+    @Column(name = "device_id")
+    private String deviceId;
+
     //Relation JPA entre classe et matiere
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "matieres_id")
     private Matiere matiere;
 
     //creation des getters pour le mappe
-    public Tache(Long tid, String name, String priority) {
+    public Tache(Long tid, String name, String priority, String deviceId) {
         this.tid = tid;
         this.name = name;
         this.priority = priority;
+        this.deviceId = deviceId;
     }
 }

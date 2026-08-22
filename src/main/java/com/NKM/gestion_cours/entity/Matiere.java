@@ -27,6 +27,10 @@ public class Matiere {
     @Column(name ="credit")
     public Integer credit;
 
+    // Identifiant de l'appareil qui a créé cette matière
+    @Column(name = "device_id")
+    private String deviceId;
+
     //Relation JPA entre tache et matiere
     @OneToMany(mappedBy = "matiere", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Tache> taches;
@@ -37,9 +41,10 @@ public class Matiere {
     private Classes classes;
 
     //creation des getters pour le mappe
-    public Matiere(Long mid, String name, Integer credit) {
+    public Matiere(Long mid, String name, Integer credit, String deviceId) {
         this.mid = mid;
         this.name = name;
         this.credit = credit;
+        this.deviceId = deviceId;
     }
 }

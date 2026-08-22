@@ -17,7 +17,8 @@ public class MatiereMapper {
                 matiere.getMid(),
                 matiere.getName(),
                 matiere.getCredit(),
-                classesId
+                classesId,
+                matiere.getDeviceId()
         );
     }
 
@@ -29,7 +30,8 @@ public class MatiereMapper {
         return new Matiere(
                 matiereDto.getMid(),
                 matiereDto.getName(),
-                matiereDto.getCredit()
+                matiereDto.getCredit(),
+                matiereDto.getDeviceId()
         );
     }
 }

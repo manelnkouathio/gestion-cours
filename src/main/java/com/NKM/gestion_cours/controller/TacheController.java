@@ -19,35 +19,39 @@ public class TacheController {
 
     // Build Add Tache REST API
     @PostMapping
-    public ResponseEntity<TacheDto> createTache(@RequestBody TacheDto tacheDto) {
-        TacheDto savedTache = tacheService.createTache(tacheDto);
+    public ResponseEntity<TacheDto> createTache(@RequestBody TacheDto tacheDto,
+                                                  @RequestHeader("X-Device-Id") String deviceId) {
+        TacheDto savedTache = tacheService.createTache(tacheDto, deviceId);
         return new ResponseEntity<>(savedTache, HttpStatus.CREATED);
     }
 
     // Build Get Tache REST API
     @GetMapping("{tid}")
-    public ResponseEntity<TacheDto> getTacheById(@PathVariable("tid") long tacheId) {
-        TacheDto tacheDto = tacheService.getTacheById(tacheId);
+    public ResponseEntity<TacheDto> getTacheById(@PathVariable("tid") long tacheId,
+                                                   @RequestHeader("X-Device-Id") String deviceId) {
+        TacheDto tacheDto = tacheService.getTacheById(tacheId, deviceId);
         return ResponseEntity.ok(tacheDto);
     }
 
     // Build Get All Tache REST API
     @GetMapping
-    public ResponseEntity<List<TacheDto>> getAllTaches() {
-        List<TacheDto> taches = tacheService.getAllTaches();
+    public ResponseEntity<List<TacheDto>> getAllTaches(@RequestHeader("X-Device-Id") String deviceId) {
+        List<TacheDto> taches = tacheService.getAllTaches(deviceId);
         return ResponseEntity.ok(taches);
     }
 
     //Build Delete Tache REST API
     @DeleteMapping("{tid}")
-    public ResponseEntity<String> deleteTache(@PathVariable("tid") long tid) {
-        tacheService.deleteTache(tid);
+    public ResponseEntity<String> deleteTache(@PathVariable("tid") long tid,
+                                                @RequestHeader("X-Device-Id") String deviceId) {
+        tacheService.deleteTache(tid, deviceId);
         return ResponseEntity.ok("Tache deleted");
     }
 
     @GetMapping("matieres/{matiereId}")
-    public ResponseEntity<List<TacheDto>> getTachesByMatieresId(@PathVariable("matiereId") Long matiereId) {
-        List<TacheDto> taches = tacheService.getTachesByMatieresId(matiereId);
+    public ResponseEntity<List<TacheDto>> getTachesByMatieresId(@PathVariable("matiereId") Long matiereId,
+                                                                    @RequestHeader("X-Device-Id") String deviceId) {
+        List<TacheDto> taches = tacheService.getTachesByMatieresId(matiereId, deviceId);
         return ResponseEntity.ok(taches);
     }
 }

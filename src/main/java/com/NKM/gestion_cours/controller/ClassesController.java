@@ -19,24 +19,26 @@ public class ClassesController {
 
     // Build Add Classes REST API
     @PostMapping
-    public ResponseEntity<ClassesDto> createClasses(@RequestBody ClassesDto classesDto) {
-        ClassesDto savedClasses = classesService.createClasses(classesDto);
+    public ResponseEntity<ClassesDto> createClasses(@RequestBody ClassesDto classesDto,
+                                                      @RequestHeader("X-Device-Id") String deviceId) {
+        ClassesDto savedClasses = classesService.createClasses(classesDto, deviceId);
         return new  ResponseEntity<>(savedClasses, HttpStatus.CREATED);
     }
 
     // Build Get Classes REST API
 
     @GetMapping("{id}")
-    public ResponseEntity<ClassesDto> getClassesById(@PathVariable("id")  Long classesId) {
-        ClassesDto classesDto = classesService.getClassesById(classesId);
+    public ResponseEntity<ClassesDto> getClassesById(@PathVariable("id")  Long classesId,
+                                                       @RequestHeader("X-Device-Id") String deviceId) {
+        ClassesDto classesDto = classesService.getClassesById(classesId, deviceId);
         return ResponseEntity.ok(classesDto);
     }
 
     // Build Get All Classes REST API
 
     @GetMapping
-    public ResponseEntity<List<ClassesDto>> getAllClasses(){
-        List<ClassesDto> classes1 = classesService.getAllClasses();
+    public ResponseEntity<List<ClassesDto>> getAllClasses(@RequestHeader("X-Device-Id") String deviceId){
+        List<ClassesDto> classes1 = classesService.getAllClasses(deviceId);
         return ResponseEntity.ok(classes1);
     }
 
@@ -44,16 +46,18 @@ public class ClassesController {
 
     @PutMapping("{id}")
     public ResponseEntity<ClassesDto> updateClasses(@PathVariable("id")  Long classesId,
-                                                    @RequestBody ClassesDto updatedClasses) {
-        ClassesDto classesDto = classesService.updateClasses(classesId, updatedClasses);
+                                                    @RequestBody ClassesDto updatedClasses,
+                                                    @RequestHeader("X-Device-Id") String deviceId) {
+        ClassesDto classesDto = classesService.updateClasses(classesId, updatedClasses, deviceId);
         return ResponseEntity.ok(classesDto);
     }
 
     // Build Delete Classes REST API
 
     @DeleteMapping("{id}")
-    public ResponseEntity<String> deleteClasses(@PathVariable("id")  Long classesId) {
-        classesService.deleteClasses(classesId);
+    public ResponseEntity<String> deleteClasses(@PathVariable("id")  Long classesId,
+                                                  @RequestHeader("X-Device-Id") String deviceId) {
+        classesService.deleteClasses(classesId, deviceId);
         return ResponseEntity.ok("Classes deleted Successfully");
     }
 }

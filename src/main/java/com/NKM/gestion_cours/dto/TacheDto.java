@@ -16,5 +16,6 @@ public class TacheDto {
     private String name;
     private String priority;
     private Long matiereId;
+    private String deviceId;
 
 }

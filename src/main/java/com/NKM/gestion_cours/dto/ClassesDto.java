@@ -16,4 +16,5 @@ public class ClassesDto {
     private Long id;
     private String name;
     private String date;
+    private String deviceId;
 }

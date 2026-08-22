@@ -29,14 +29,20 @@ public class Classes {
     @Column(name = "date")
     private String date;
 
+    // Identifiant de l'appareil qui a créé cette classe, pour isoler les
+    // données affichées par appareil sans système de compte utilisateur.
+    @Column(name = "device_id")
+    private String deviceId;
+
     //Relation JPA entre classe et matiere
     @OneToMany(mappedBy = "classes", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Matiere> matieres;
 
     //creation des getters pour le mapper
-    public Classes(Long id, String name, String date) {
+    public Classes(Long id, String name, String date, String deviceId) {
         this.id = id;
         this.name = name;
         this.date = date;
+        this.deviceId = deviceId;
     }
 }

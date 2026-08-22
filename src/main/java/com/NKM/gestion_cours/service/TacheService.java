@@ -7,17 +7,17 @@ import java.util.List;
 public interface TacheService {
 
     //fonction de POST
-    TacheDto createTache(TacheDto tacheDto);
+    TacheDto createTache(TacheDto tacheDto, String deviceId);
 
     //fonction de GET(Id)
-    TacheDto getTacheById(long tid);
+    TacheDto getTacheById(long tid, String deviceId);
 
     //fonction de GETALL
-    List<TacheDto> getAllTaches();
+    List<TacheDto> getAllTaches(String deviceId);
 
     //fonction de DELETE
-    void deleteTache(long tid);
+    void deleteTache(long tid, String deviceId);
 
     //fonction de GET(matiere_Id)
-    List<TacheDto> getTachesByMatieresId(Long matiereId);
+    List<TacheDto> getTachesByMatieresId(Long matiereId, String deviceId);
 }

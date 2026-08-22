@@ -23,8 +23,9 @@ public class TacheServiceImpl implements TacheService {
 
     //fonction de POST
     @Override
-    public TacheDto createTache(TacheDto tacheDto) {
+    public TacheDto createTache(TacheDto tacheDto, String deviceId) {
         Tache tache = TacheMapper.mapToTache(tacheDto);
+        tache.setDeviceId(deviceId);
 
         if (tacheDto.getMatiereId() != null) {
             Matiere matiere = matiereRepository.findById(tacheDto.getMatiereId())
@@ -36,30 +37,33 @@ public class TacheServiceImpl implements TacheService {
         return TacheMapper.mapToTacheDto(savedTache);
     }
 
-    //fonction de GET(Id)
+    //fonction de GET(Id) — vérifie que la tâche appartient bien à cet appareil
     @Override
-    public TacheDto getTacheById(long tacheId) {
+    public TacheDto getTacheById(long tacheId, String deviceId) {
 
         Tache tache = tacheRepository.findById(tacheId)
+                .filter(t -> t.getDeviceId() != null && t.getDeviceId().equals(deviceId))
                 .orElseThrow(() ->
                         new ResourceNotFoundException("Tache not found with id: " + tacheId));
 
         return TacheMapper.mapToTacheDto(tache);
     }
 
-    //fonction de GETALL
+    //fonction de GETALL — ne retourne que les taches de cet appareil
     @Override
-    public List<TacheDto> getAllTaches() {
-        List<Tache> taches = tacheRepository.findAll();
+    public List<TacheDto> getAllTaches(String deviceId) {
+        List<Tache> taches = tacheRepository.findByDeviceId(deviceId);
         return taches.stream().map((tache) -> TacheMapper.mapToTacheDto(tache))
                 .collect(Collectors.toList());
     }
 
-    //fonction de DELETE
+    //fonction de DELETE — vérifie l'appartenance avant suppression
     @Override
-    public void deleteTache(long tacheId) {
+    public void deleteTache(long tacheId, String deviceId) {
 
-        Tache tache = tacheRepository.findById(tacheId).orElseThrow(
+        Tache tache = tacheRepository.findById(tacheId)
+                .filter(t -> t.getDeviceId() != null && t.getDeviceId().equals(deviceId))
+                .orElseThrow(
                 () -> new ResourceNotFoundException("Tache not found with id: " + tacheId)
         );
 
@@ -67,10 +71,10 @@ public class TacheServiceImpl implements TacheService {
 
     }
 
-    //fonction de GET(matiere_Id)
+    //fonction de GET(matiere_Id) — filtre aussi par appareil
     @Override
-    public List<TacheDto> getTachesByMatieresId(Long matieresId) {
-        List<Tache> taches = tacheRepository.findByMatiereMid(matieresId);
+    public List<TacheDto> getTachesByMatieresId(Long matieresId, String deviceId) {
+        List<Tache> taches = tacheRepository.findByMatiereMidAndDeviceId(matieresId, deviceId);
         return taches.stream()
                 .map(TacheMapper::mapToTacheDto)
                 .collect(Collectors.toList());

@@ -14,7 +14,8 @@ public class TacheMapper {
                 tache.getTid(),
                 tache.getName(),
                 tache.getPriority(),
-                tacheId
+                tacheId,
+                tache.getDeviceId()
         );
     }
 
@@ -22,7 +23,8 @@ public class TacheMapper {
         return new Tache(
             tacheDto.getTid(),
             tacheDto.getName(),
-            tacheDto.getPriority()
+            tacheDto.getPriority(),
+            tacheDto.getDeviceId()
         );
     }
 }

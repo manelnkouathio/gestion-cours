@@ -9,7 +9,8 @@ public class ClassesMapper {
         return new ClassesDto(
                 classes.getId(),
                 classes.getName(),
-                classes.getDate()
+                classes.getDate(),
+                classes.getDeviceId()
         );
     }
 
@@ -17,7 +18,8 @@ public class ClassesMapper {
         return new Classes(
                 classesDto.getId(),
                 classesDto.getName(),
-                classesDto.getDate()
+                classesDto.getDate(),
+                classesDto.getDeviceId()
         );
     }
 }

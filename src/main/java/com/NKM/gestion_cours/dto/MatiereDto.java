@@ -16,4 +16,5 @@ public class MatiereDto {
     private String name;
     private Integer credit;
     private Long classesId;
+    private String deviceId;
 }
