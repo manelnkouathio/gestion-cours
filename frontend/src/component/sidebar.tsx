@@ -60,7 +60,7 @@ const Sidebar = () => {
 
         {/*Différent widget de navigate*/}
         <div className="p-5">
-            <div onClick={Navigate} className=" cursor-pointer flex text-xl transform transition hover:-translate-y-1 motion-reduce:transition-none motion-safe:hover:transform-none hover:text-info"><House /><span className="ml-1">Acceuil</span></div>
+            <div onClick={Navigate} className=" cursor-pointer flex text-xl transform transition hover:-translate-y-1 motion-reduce:transition-none motion-safe:hover:transform-none hover:text-info"><House /><span className="ml-1">Accueil</span></div>
             <div onClick={Navigate2} className=" cursor-pointer flex pt-6 text-xl transform transition hover:-translate-y-1 motion-reduce:transition-none motion-safe:hover:transform-none hover:text-info"><Settings /><span className="ml-1">Setting</span></div>
             <div onClick={Navigate3} className=" cursor-pointer flex pt-6 text-xl transform transition hover:-translate-y-1 motion-reduce:transition-none motion-safe:hover:transform-none hover:text-info"><Dock /><span className="ml-1">Documentation</span></div>
         </div>

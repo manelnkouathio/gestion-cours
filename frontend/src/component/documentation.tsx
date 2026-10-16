@@ -21,7 +21,7 @@ const Documentation = () => {
             <hr/><br/>
 
             {/*Presentation du Projet*/}
-            <p className="text-xl m-2"> Bienvenue sur GESTAPP, un projet personnel pour gérer ces cours plus simplement en departement, en automatisant la prise des notes, la gestion des devoirs et même le calcul de moyenne. Cette Application Web permet ainsi un temps considérable pouvant être allouer a une meilleur compréhension du cours.</p>
+            <p className="text-xl m-2"> Bienvenue sur GESTAPP, un projet personnel pour gérer ces cours plus simplement en département, en automatisant la prise des notes, la gestion des devoirs et même le calcul de moyenne. Cette Application Web permet ainsi de gagner un temps considérable pouvant être allouer à une meilleur compréhension du cours.</p>
 
             <br/><hr/><br/>
 
@@ -29,8 +29,8 @@ const Documentation = () => {
             <h2>Mode d'Emploi : </h2>
             <p>
                 <ol>
-                    <li>- Creer une Classe avec le button Ajouter</li>
-                    <li>- Si vous souhaiter ajouter une UE, parter sur la liste de vous UE et cliquer sur Ajouter</li>
+                    <li>- Créer une Classe avec le button Ajouter</li>
+                    <li>- Si vous souhaiter ajouter une UE, partez sur la liste de vos UE et cliquer sur Ajouter</li>
                     <li>- Vous pouvez ainsi faire toutes les modifications sur vos cours</li>
                 </ol>
             </p>
